@@ -18,6 +18,7 @@ app.use((req, res, next) => {
 });
 
 app.use(bodyParser.json());
+app.use(clientRouter);
 app.use(reunionRouter);
 app.use(reservationRouter);
 
