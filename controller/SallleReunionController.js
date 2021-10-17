@@ -9,7 +9,7 @@ const SalleReunionController = {
           res.status(200).json(createsallereunion);
         } catch (error) {
             console.log(error);
-            res.status(500).send("Erreur lors de l'ajout du compte");
+            res.status(500).send("Erreur lors de l'ajout de salle reunion");
         }
     }
     
