@@ -1,9 +1,9 @@
 const express = require('express')
 const app = express();
-var bodyParser = require('body-parser');
+let bodyParser = require('body-parser');
 const reunionRouter = require('./router/sallereunion');
 const reservationRouter = require('./router/reservation')
-var cors = require('cors')
+let cors = require('cors')
 
 require('dotenv').config()
 const port = process.env.PORT;
