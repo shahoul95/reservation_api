@@ -11,7 +11,7 @@ exports.seed = function(knex) {
      for(var i in rooms){
        
    const jsonequipement =  JSON.stringify(rooms[i][0].equipements)
-  const jsonequipementparse = JSON.parse(jsonequiepent)
+  const jsonequipementparse = JSON.parse(jsonequipement)
 
 
       return knex('salle_reunion').insert([
