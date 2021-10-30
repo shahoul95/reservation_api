@@ -36,7 +36,7 @@ const ReservationController = {
             .where('salle_reserver.date_debut', '<=', datedebutheure).andWhere('salle_reserver.date_fin', '>=', datefinheure) 
             .orWhere('salle_reserver.date_debut', '>=', datedebutheure).andWhere('salle_reserver.date_fin', '<=', datefinheure)) 
             .then(function (data) {
-                console.log(data[0].id);
+           
                 let resultArray = Object.values(JSON.parse(JSON.stringify(data)));
             
 
