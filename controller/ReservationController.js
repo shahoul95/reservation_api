@@ -18,7 +18,7 @@ const ReservationController = {
         }
 
     },
-    GetReservationSalle: async (req, res) => {
+    GetReservationSalle:  (req, res) => {
         try {
 
 
@@ -28,15 +28,22 @@ const ReservationController = {
             const datefinheure = dayjs(`${dateparse} ${datefin}`).format('YYYY-MM-DD HH:mm:ss')
 
            
-            const salledispo = knex.select().from('salle_reunion').where({ equipement: equipement }).whereNotIn('salle_reunion.id', knex.from('salle_reunion').select('salle_reunion.id').join('salle_reserver', 'salle_reunion.id', '=', 'salle_reserver.salle_reunion_id').where('salle_reserver.date_debut', '<=', datedebutheure).andWhere('salle_reserver.date_fin', '>=', datefinheure).orWhere('salle_reserver.date_debut', '>=', datedebutheure).andWhere('salle_reserver.date_fin', '<=', datefinheure)).then(function (data) {
+            const salledispo =  knex.select()
+            .from('salle_reunion')
+            .where({ equipement: equipement })
+            .whereNotIn('salle_reunion.id', knex.from('salle_reunion')
+            .select('salle_reunion.id').join('salle_reserver', 'salle_reunion.id', '=', 'salle_reserver.salle_reunion_id')
+            .where('salle_reserver.date_debut', '<=', datedebutheure).andWhere('salle_reserver.date_fin', '>=', datefinheure) 
+            .orWhere('salle_reserver.date_debut', '>=', datedebutheure).andWhere('salle_reserver.date_fin', '<=', datefinheure)) 
+            .then(function (data) {
+                console.log(data[0].id);
                 let resultArray = Object.values(JSON.parse(JSON.stringify(data)));
             
 
                 res.status(200).json(resultArray);
             })
-
-
-
+           
+ 
 
         } catch (error) {
             res.status(500).send("Erreur de reservation")
